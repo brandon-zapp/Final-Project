@@ -55,11 +55,12 @@ joystick_center_x = 511
 joystick_center_y = 497
 
 # Commands to transmit for each joystick direction
-COMMAND_UP = 0x01
-COMMAND_DOWN = 0x02
-COMMAND_LEFT = 0x03
-COMMAND_RIGHT = 0x04
-COMMAND_MID = 0x05
+COMMAND_UP = 0x05
+COMMAND_DOWN = 0x06
+COMMAND_LEFT = 0x07
+COMMAND_RIGHT = 0x08
+COMMAND_MID = 0x09
+COMMAND_NICK = 0x10
 
 # Threshold for joystick movement
 joystick_threshold = 50
@@ -89,6 +90,7 @@ def handle_button_press(button):
         transmitter.transmit(device_addr, COMMAND_MID)
     elif button == BUTTON_Y:
         set_led(Pin(LED_4_PIN, Pin.OUT), led_states[button])
+        transmitter.transmit(device_addr, COMMAND_NICK)
     print("Button", button, "is", "pressed" if led_states[button] else "released")
 
 def transmit_command(command):
